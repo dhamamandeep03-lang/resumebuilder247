@@ -187,7 +187,7 @@ export default function ResumeBuilder() {
     );
 
   // Helper for experience date formatting
-  const ExpDate = (e) => (
+  const ExpDate = (e: { start: string; end?: string; currentlyWorking?: boolean }) => (
     <div className="text-xs text-gray-600">
       {e.start} - {e.currentlyWorking ? "Present" : e.end}
     </div>
