@@ -179,7 +179,7 @@ export default function ResumeBuilder() {
   // ---------------- PREVIEW ----------------
   const Preview = () => {
   // Helper for rendering bullets
-  const BulletList = ({ list }) =>
+  const BulletList = ({ list }: { list: string[] }) =>
     list.some(b => b.trim()) && (
       <ul className="list-disc ml-6 mt-2 text-sm">
         {list.map((b, i) => b.trim() && <li key={i}>{b}</li>)}
