@@ -85,7 +85,7 @@ export default function ResumeBuilder() {
 
   // ---------------- DURATION ----------------
 
-  const calculateDuration = (start, end, current) => {
+  const calculateDuration = (start: string, end: string, current: boolean) => {
     if (!start) return "";
 
     const startDate = new Date(start + "-01");
