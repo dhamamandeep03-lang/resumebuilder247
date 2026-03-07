@@ -194,7 +194,7 @@ export default function ResumeBuilder() {
   );
 
   // Helper for education meta
-  const EduMeta = (e) => (
+  const EduMeta = (e: { start: string; end?: string; city?: string }) => (
     <div className="text-xs text-gray-600">
       {e.start} - {e.end} {e.city && `| ${e.city}`}
     </div>
