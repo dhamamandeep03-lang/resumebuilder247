@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Roboto:wght@300;400;600&family=Lato:wght@300;400;600&family=Playfair+Display:wght@400;600&family=Poppins:wght@300;400;600&display=swap"
+    rel="stylesheet">
+  <style>
+    /* ===== PAGE SETUP ===== */
+    @page {
+      size: A4;
+      margin: 22mm;
+    }
+
+    body {
+      font-family: "Inter", sans-serif;
+      color: #111;
+      margin: 0;
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    /* ===== COLOR SYSTEM (Black/White Minimal Executive) ===== */
+    :root {
+      --black: #000000;
+      --dark: #1a1a1a;
+      --gray: #555555;
+      --light-gray: #e5e5e5;
+    }
+
+    /* ===== HEADER ===== */
+    .header {
+      padding-bottom: 18px;
+      margin-bottom: 32px;
+      border-bottom: 2px solid var(--black);
+      page-break-after: avoid;
+    }
+
+    .name {
+      font-family: "Playfair Display", serif;
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--black);
+      margin-bottom: 6px;
+      letter-spacing: 0.4px;
+    }
+
+    .contact {
+      font-size: 13px;
+      color: var(--gray);
+      letter-spacing: 0.3px;
+    }
+
+    /* ===== SECTION ===== */
+    .section {
+      margin-top: 26px;
+      page-break-inside: avoid;
+    }
+
+    .section-title {
+      font-family: "Playfair Display", serif;
+      font-size: 16px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--black);
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+      padding-bottom: 4px;
+      border-bottom: 1px solid var(--black);
+      page-break-after: avoid;
+    }
+
+    /* ===== ITEM / BLOCK STYLE ===== */
+    .item {
+      margin-top: 12px;
+      margin-bottom: 16px;
+      page-break-inside: avoid;
+    }
+
+    .item strong {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--dark);
+    }
+
+    .meta {
+      font-size: 12px;
+      color: var(--gray);
+      margin-top: 3px;
+    }
+
+    /* ===== SUMMARY ===== */
+    .summary-text {
+      font-size: 14px;
+      color: #222;
+      line-height: 1.7;
+    }
+
+    /* ===== LISTS ===== */
+    ul {
+      padding-left: 18px;
+      margin-top: 6px;
+    }
+
+    li {
+      font-size: 13px;
+      margin-bottom: 4px;
+    }
+
+    /* ===== INLINE SKILLS ===== */
+    .skills-inline {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 18px;
+      font-size: 13px;
+      margin-top: 10px;
+    }
+
+    .skill-item {
+      letter-spacing: 0.3px;
+    }
+  </style>
+</head>
+
+<body style="font-family:
+  {{#if (eq font 'roboto')}} 'Roboto', sans-serif;
+  {{else if (eq font 'lato')}} 'Lato', sans-serif;
+  {{else if (eq font 'playfair')}} 'Playfair Display', serif;
+  {{else if (eq font 'poppins')}} 'Poppins', sans-serif;
+  {{else}} 'Inter', sans-serif;
+  {{/if}}
+">
+
+  <div class="header">
+    <div class="name">{{name}}</div>
+    <div class="contact">
+      {{email}}
+      {{#if phone}} | {{phone}}{{/if}}
+      {{#if city}} | {{city}}{{/if}}
+      {{#if dob}} | DOB: {{dob}}{{/if}}
+    </div>
+  </div>
+
+  <!-- SUMMARY -->
+  {{#if summary}}
+  <div class="section">
+    <div class="section-title">Professional Summary</div>
+    <div class="summary-text">{{summary}}</div>
+  </div>
+  {{/if}}
+
+  <!-- EDUCATION -->
+  {{#if education}}
+  <div class="section">
+    <div class="section-title">Education</div>
+
+    {{#each education}}
+    {{#if degree}}
+    <div class="item">
+      <strong>{{degree}}</strong> — {{school}}
+      <div class="meta">
+        {{start}} - {{end}}
+        {{#if city}} | {{city}}{{/if}}
+      </div>
+    </div>
+    {{/if}}
+    {{/each}}
+
+  </div>
+  {{/if}}
+
+  <!-- INTERNSHIPS -->
+  {{#if internships}}
+  <div class="section">
+    <div class="section-title">Internships</div>
+
+    {{#each internships}}
+    {{#if role}}
+    <div class="item">
+      <strong>{{role}}</strong> — {{company}}
+      <div class="meta">{{start}} - {{end}}</div>
+
+      {{#if bullets}}
+      <ul>
+        {{#each bullets}}
+        {{#if this}}
+        <li>{{this}}</li>
+        {{/if}}
+        {{/each}}
+      </ul>
+      {{/if}}
+    </div>
+    {{/if}}
+    {{/each}}
+
+  </div>
+  {{/if}}
+
+  <!-- PROJECTS -->
+  {{#if projects}}
+  <div class="section">
+    <div class="section-title">Projects</div>
+
+    {{#each projects}}
+    {{#if title}}
+    <div class="item">
+      <strong>{{title}}</strong>
+
+      {{#if tech}}
+      <div class="meta">{{tech}}</div>
+      {{/if}}
+
+      {{#if bullets}}
+      <ul>
+        {{#each bullets}}
+        {{#if this}}
+        <li>{{this}}</li>
+        {{/if}}
+        {{/each}}
+      </ul>
+      {{/if}}
+    </div>
+    {{/if}}
+    {{/each}}
+
+  </div>
+  {{/if}}
+
+  <!-- SKILLS -->
+  {{#if skills}}
+  <div class="section">
+    <div class="section-title">Skills</div>
+    <div class="skills-inline">
+      {{#each skills}}
+      {{#if this}}
+      <span class="skill-item">• {{this}}</span>
+      {{/if}}
+      {{/each}}
+    </div>
+  </div>
+  {{/if}}
+
+  <!-- CERTIFICATIONS -->
+  {{#if certifications}}
+  <div class="section">
+    <div class="section-title">Certifications</div>
+
+    {{#each certifications}}
+    {{#if name}}
+    <div class="item">
+      <strong>{{name}}</strong>
+      {{#if org}} — {{org}}{{/if}}
+      {{#if year}}
+      <div class="meta">{{year}}</div>
+      {{/if}}
+    </div>
+    {{/if}}
+    {{/each}}
+
+  </div>
+  {{/if}}
+
+  <!-- EXPERIENCE -->
+  {{#if experience}}
+  <div class="section">
+    <div class="section-title">Experience</div>
+
+    {{#each experience}}
+    {{#if role}}
+    <div class="item">
+      <strong>{{role}}</strong> — {{company}}
+      <div class="meta">
+        {{start}} -
+        {{#if currentlyWorking}}Present{{else}}{{end}}{{/if}}
+        {{#if duration}} ({{duration}}){{/if}}
+      </div>
+
+      {{#if bullets}}
+      <ul>
+        {{#each bullets}}
+        {{#if this}}
+        <li>{{this}}</li>
+        {{/if}}
+        {{/each}}
+      </ul>
+      {{/if}}
+
+    </div>
+    {{/if}}
+    {{/each}}
+
+  </div>
+  {{/if}}
+
+  <!-- EXTRACURRICULAR -->
+  {{#if extracurricular}}
+  <div class="section">
+    <div class="section-title">Extracurricular Activities</div>
+
+    {{#each extracurricular}}
+    {{#if title}}
+    <div class="item">
+      <strong>{{title}}</strong>
+      {{#if description}}
+      <div class="meta">{{description}}</div>
+      {{/if}}
+    </div>
+    {{/if}}
+    {{/each}}
+
+  </div>
+  {{/if}}
+
+</body>
+
+</html>
