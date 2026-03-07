@@ -201,7 +201,7 @@ export default function ResumeBuilder() {
   );
 
   // Helper for ALL SECTIONS
-  const Sections = (color) => (
+  const Sections = (color: string) => (
     <>
       {/* SUMMARY */}
       {personal.summary && (
