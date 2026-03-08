@@ -128,7 +128,7 @@ export default function ResumeBuilder() {
 
     try {
       const response = await fetch(
-        "http://localhost:8080/api/generate-resume",
+  "https://rb247-backend.onrender.com/api/generate-resume",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
