@@ -30,13 +30,14 @@ export default async function generateResume(req, res) {
 
     // -------- LAUNCH BROWSER ----------
     const browser = await puppeteer.launch({
-      headless: true,
-      args: [
-        "--no-sandbox",
-        "--disable-setuid-sandbox",
-        "--disable-dev-shm-usage",
-      ],
-    });
+  headless: "new",
+  args: [
+    "--no-sandbox",
+    "--disable-setuid-sandbox",
+    "--disable-dev-shm-usage",
+    "--disable-gpu",
+  ],
+});
 
     const page = await browser.newPage();
 
@@ -46,9 +47,10 @@ export default async function generateResume(req, res) {
     });
 
     const pdfBuffer = await page.pdf({
-      format: "A4",
-      printBackground: true,
-    });
+  format: "A4",
+  printBackground: true,
+  preferCSSPageSize: true,
+});
 
     await browser.close();
 
@@ -62,7 +64,7 @@ export default async function generateResume(req, res) {
     );
     res.setHeader("Content-Length", pdfBuffer.length);
 
-    return res.end(pdfBuffer);
+    return res.send(pdfBuffer);
   } catch (err) {
     console.error("PDF ERROR:", err);
     return res.status(500).json({ error: "Internal Server Error" });
